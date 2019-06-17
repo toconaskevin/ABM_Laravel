@@ -11,7 +11,6 @@
   <table class="table table-striped">
     <thead>
         <tr>
-          <td>ID</td>
           <td>Nombre</td>
           <td>Código</td>
           <td>Acciones</td>

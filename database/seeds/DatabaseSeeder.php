@@ -1,5 +1,6 @@
 <?php
 
+use App\Notas;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(Notas::class)->create();
         // $this->call(UsersTableSeeder::class);
     }
 }
