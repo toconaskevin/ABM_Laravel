@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMateriasDisponiblesTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateMateriasDisponiblesTable extends Migration
      */
     public function up()
     {
-        Schema::create('materias_disponibles', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('materia', 30);
+            $table->bigInteger('role_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +31,6 @@ class CreateMateriasDisponiblesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materias_disponibles');
+        Schema::dropIfExists('role_user');
     }
 }

@@ -5,13 +5,13 @@
 <div class="col-sm-12">
     <h1 class="display-3">Notas</h1>
 
-  <table class="table table-striped">
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
         <tr>
-          <td>Materia</td>
-          <td>1er Parcial</td>
-          <td>2do Parcial</td>
-          <td>Examen Final</td>
+          <th scope="col">Materia</th>
+          <th scope="col">1er Parcial</th>
+          <th scope="col">2do Parcial</th>
+          <th scope="col">Examen Final</th>
         </tr>
     </thead>
     <tbody>
@@ -19,16 +19,15 @@
       @foreach($materias as $materia)
         @foreach($notas as $nota)
           <tr>
-           <td>{{$materia->materia}}</td>
+            <td>{{$materia->nombre}}</td>
             <td>{{$nota->nota1}}</td>
             <td>{{$nota->nota2}}</td>
             <td>{{$nota->final}}</td>
-            <td>
           </tr>
         @endforeach
       @endforeach
 
-      </tbody>
+    </tbody>
   </table>
 <div>
 </div>
