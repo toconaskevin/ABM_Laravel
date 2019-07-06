@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Notas;
-use App\MateriasDisponibles;
+//use App\MateriasDisponibles;
+use App\Materia;
 use Illuminate\Http\Request;
 
 class NotasController extends Controller
@@ -17,9 +18,13 @@ class NotasController extends Controller
     {
         $notas = Notas::all();
 
-        $materias = MateriasDisponibles::all();
+        $materias = Materia::all();
 
         return view('notas.index', compact('notas','materias'));
     }
 
+    public function show()
+    {
+        abort(404, 'Error');
+    }
 }

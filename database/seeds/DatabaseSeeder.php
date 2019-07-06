@@ -1,6 +1,8 @@
 <?php
 
 use App\Notas;
+use App\Role;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,7 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Notas::class)->create();
-        // $this->call(UsersTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(MateriaTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(NotasTableSeeder::class);
     }
 }

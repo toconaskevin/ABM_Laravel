@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('images/logoname.png') }}" class="img-thumbnail" width="154" height="86">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,12 +36,30 @@
                        
                         <!-- Item Navbar only if Login -->
                         @if (Auth::check())
-                            <li class="nav-item">
-                                <a class="nav-link" href="materias">Materias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="notas">Notas</a>
-                            </li>
+                            @if(Auth::user()->hasRole('alumno'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('materias.index') }}">Mis Materias</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('notas.index') }}">Notas</a>
+                                </li>
+                            @endif
+                            @if(Auth::user()->hasRole('admin'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('users.index') }}">Gestion de Usuarios</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('materias.index') }}">Materias</a>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('cargarNotas.index') }}">Cursos(NoImplementado)</a>
+                                </li>
+                            @endif
+                            @if(Auth::user()->hasRole('docente'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cargarNotas.index') }}">Cargar Notas(NoImplementado)</a>
+                                </li>
+                            @endif
                         @endif
                     </ul>
 
@@ -50,11 +68,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('INICIAR SESION') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('REGISTRARSE') }}</a>
                                 </li>
                             @endif
                         @else

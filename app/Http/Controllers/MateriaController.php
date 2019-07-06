@@ -24,8 +24,9 @@ class MateriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles('admin');
         return view('materias.create');
     }
 
@@ -89,11 +90,11 @@ class MateriaController extends Controller
             'codigo'=>'required'
         ]);
 
-        $materia->nombre =  $request->get('nombre');
+        $materia->nombre = $request->get('nombre');
         $materia->codigo = $request->get('codigo');
         $materia->save();
 
-        return redirect('/materias')->with('success', 'Materia actualziada!');
+        return redirect('/materias')->with('success', 'Materia actualizada!');
     }
 
     /**
@@ -109,4 +110,5 @@ class MateriaController extends Controller
 
         return redirect('/materias')->with('success', 'Materia eliminada!');
     }
+
 }
